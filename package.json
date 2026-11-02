@@ -34,6 +34,7 @@
     "@types/crypto-js": "^4.2.2",
     "@upstash/redis": "^1.25.0",
     "@vercel/blob": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "@websr/websr": "^0.0.16",
     "artplayer": "^5.4.0",
     "artplayer-plugin-danmuku": "^5.3.0",

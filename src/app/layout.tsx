@@ -6,6 +6,7 @@ import nextDynamic from 'next/dynamic';
 import { cookies } from 'next/headers';
 import { Suspense } from 'react';
 import { Toaster } from 'sonner';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
 
@@ -183,7 +184,7 @@ export default async function RootLayout({
       >
         {/*
           iOS 沉浸式状态栏（black-translucent）下，状态栏图标固定为白色，
-          不随亮/暗主题切换。用一条固定深色条带盖住状态栏区域，
+          不随亮/暗主题切换。用一条��定深色条带盖住状态栏区域，
           确保任何主题下时间/电量图标都清晰可读。安全区外的设备该高度为 0，不受影响。
         */}
         <div
@@ -234,6 +235,7 @@ export default async function RootLayout({
           </QueryProvider>
           <Toaster position="top-center" richColors closeButton />
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
