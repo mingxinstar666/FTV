@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
 import nextDynamic from 'next/dynamic';
+import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { Suspense } from 'react';
 import { Toaster } from 'sonner';
@@ -11,18 +12,18 @@ import './globals.css';
 
 import { getConfig } from '@/lib/config';
 
-import { GlobalErrorIndicator } from '../components/GlobalErrorIndicator';
-import { GlobalDOMErrorHandler } from '../components/GlobalDOMErrorHandler';
-import { DOMErrorBoundary } from '../components/DOMErrorBoundary';
 import { ChunkErrorGuard } from '../components/ChunkErrorGuard';
+import { CinematicLoadingFallback } from '../components/CinematicLoadingFallback';
+import { DOMErrorBoundary } from '../components/DOMErrorBoundary';
+import { GlobalDOMErrorHandler } from '../components/GlobalDOMErrorHandler';
+import { GlobalErrorIndicator } from '../components/GlobalErrorIndicator';
 import NavigationShell from '../components/NavigationShell';
+import QueryProvider from '../components/QueryProvider';
 import { SiteProvider } from '../components/SiteProvider';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { WatchRoomProvider } from '../components/WatchRoomProvider';
 import { DownloadProvider } from '../contexts/DownloadContext';
 import { GlobalCacheProvider } from '../contexts/GlobalCacheContext';
-import QueryProvider from '../components/QueryProvider';
-import { CinematicLoadingFallback } from '../components/CinematicLoadingFallback';
 
 // 懒加载非关键 UI 组件，减少首屏 JS 体积（代码分割）
 // 未设置 ssr: false，保持服务端渲染兼容性
@@ -166,7 +167,7 @@ export default async function RootLayout({
         <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
         <link rel='apple-touch-icon' href='/icons/icon-192x192.png' />
         {/* 将配置序列化后直接写入脚本，浏览器端可通过 window.RUNTIME_CONFIG 获取 */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        { }
         <script
           dangerouslySetInnerHTML={{
             // 转义 < 与分隔符，避免站点名/公告等配置内容中的 </script> 提前闭合脚本标签
@@ -234,6 +235,7 @@ export default async function RootLayout({
           </QueryProvider>
           <Toaster position="top-center" richColors closeButton />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
